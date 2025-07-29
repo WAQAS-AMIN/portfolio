@@ -12,6 +12,7 @@
     <header class="header">
       <div class="header-left">
         <span class="email">developer.waqasamin@gmail.com</span>
+        <button class="btn btn-light" onclick="copyEmail()">Copy</button>
         <button class="btn btn-light" onclick="window.open('waqas-amin-resumefe.pdf','_blank')">CV</button>
       </div>
       <nav class="header-right">
@@ -170,5 +171,21 @@
       </nav>
     </footer>
   </div>
+  <script>
+    function copyEmail() {
+      const email = 'developer.waqasamin@gmail.com';
+      navigator.clipboard.writeText(email).then(function() {
+        // Optional: Show a brief success message
+        const button = event.target;
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        setTimeout(() => {
+          button.textContent = originalText;
+        }, 1000);
+      }).catch(function(err) {
+        console.error('Could not copy text: ', err);
+      });
+    }
+  </script>
 </body>
 </html> 

@@ -468,6 +468,13 @@ body {
     gap: 8px;
     padding: 16px 8px 0 8px;
   }
+  .header-left {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .header .email {
+    margin-bottom: 8px;
+  }
   .footer {
     padding: 8px 8px 8px 8px;
   }
