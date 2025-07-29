@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Waqas Amin</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-left">
+        <span class="email">developer.waqasamin@gmail.com</span>
+        <button class="btn btn-light">Copy</button>
+        <button class="btn btn-light" onclick="downloadCV()">CV</button>
+      </div>
+      <nav class="header-right">
+        <a href="https://www.linkedin.com/in/waqas-amin69/">LinkedIn</a>
+        <span>/</span>
+        <a href="https://github.com/WAQAS-AMIN">GitHub</a>
+        <span>/</span>
+        <a href="https://www.instagram.com/waqas.a_m_i_n/">Instagram</a>
+      </nav>
+    </header>
+    <section class="hero">
+      <div class="profile-pic-wrapper">
+        <img src="self.jpeg" alt="Waqas Amin" class="profile-pic">
+        <span class="profile-label">Waqas Amin <span class="wave">👋</span></span>
+      </div>
+      <h1 class="hero-title">
+        Building web <br>
+        <span class="bold">apps, portals, and</span><br>
+        experience.
+      </h1>
+      <button class="btn btn-dark hero-btn" onclick="window.open('projects.html', '_blank')">Latest Projects <span class="arrow">↗</span></button>
+    </section>
+    <section class="brands">
+      <div class="brand-logos">
+        <img src="5.png" alt="Brand 1">
+        <img src="4.png" alt="Brand 2">
+        <img src="3.png" alt="Brand 3">
+        <img src="2.png" alt="Brand 4">
+        <img src="1.png" alt="Brand 5">
+      </div>
+    </section>
+    <section class="collaborate">
+      <h2 class="collaborate-title">
+        <span class="bold">Collaborate</span> with brands and agencies<br>
+        to create impactful results.
+      </h2>
+      <div class="services-label">Services</div>
+      <div class="services">
+        <div class="service">
+          <div class="service-icon">🖥️</div>
+          <h3>Web Applications</h3>
+          <p>Designing interfaces that are intuitive, efficient, and enjoyable to use.</p>
+        </div>
+        <div class="service">
+          <div class="service-icon">📱</div>
+          <h3>Web & Mobile App UI</h3>
+          <p>Transforming ideas into exceptional web and mobile app experiences.</p>
+        </div>
+        <div class="service">
+          <div class="service-icon">🎨</div>
+          <h3>Design & Creative</h3>
+          <p>Crafting visually stunning designs that connect with your audience.</p>
+        </div>
+        <div class="service">
+          <div class="service-icon">💻</div>
+          <h3>Development</h3>
+          <p>Bringing your vision to life with the latest technology and design trends.</p>
+        </div>
+      </div>
+    </section>
+    <section class="contact">
+      <div class="contact-icon">🤝</div>
+      <h2 class="contact-title">Tell me about your next project</h2>
+      <div class="contact-buttons">
+        <button class="btn btn-dark" onclick="openEmailModal()">Email Me</button>
+        <button class="btn btn-light" onclick="window.open('https://wa.me/923146797967','_blank')">WhatsApp</button>
+      </div>
+    </section>
+    <!-- Email Modal -->
+    <div id="emailModal" class="modal-overlay" style="display:none;">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeEmailModal()">&times;</span>
+        <h3>Send an Email</h3>
+        <form id="emailForm" onsubmit="submitEmail(event)">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <button type="submit" class="btn btn-dark" style="width:100%;margin-top:16px;">Send</button>
+        </form>
+      </div>
+    </div>
+    <!-- Thank You Modal -->
+    <div id="thankYouModal" class="modal-overlay" style="display:none;">
+      <div class="modal-content">
+        <h3>Thank You! 🙏</h3>
+        <p style="text-align:center;margin:16px 0;line-height:1.5;">Thank you for sharing your thoughts with me. I'll get in touch with you shortly!</p>
+        <button class="btn btn-dark" onclick="closeThankYouModal()" style="width:100%;">Close</button>
+      </div>
+    </div>
+    <footer class="footer">
+      <span>© 2025 All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="https://www.linkedin.com/in/waqas-amin69/">LinkedIn</a>
+        <span>/</span>
+        <a href="https://github.com/WAQAS-AMIN">GitHub</a>
+        <span>/</span>
+        <a href="https://www.instagram.com/waqas.a_m_i_n/">Instagram</a>
+      </nav>
+    </footer>
+  </div>
+  <script>
+    function downloadCV() {
+      // Create download link
+      const link = document.createElement('a');
+      link.href = 'waqas-amin-resumefe.pdf';
+      link.download = 'waqas-amin-resume.pdf';
+      link.style.display = 'none';
+      
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Open in new tab after a short delay
+      setTimeout(() => {
+        window.open('waqas-amin-resumefe.pdf', '_blank');
+      }, 500);
+    }
+    function openEmailModal() {
+      document.getElementById('emailModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeEmailModal() {
+      document.getElementById('emailModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    function submitEmail(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+
+      fetch('https://formspree.io/f/xzzvzbwq', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.ok) {
+          document.getElementById('emailModal').style.display = 'none';
+          document.getElementById('thankYouModal').style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        } else {
+          alert('There was an error sending your message. Please try again.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error sending your message. Please try again.');
+      });
+    }
+    function closeThankYouModal() {
+      document.getElementById('thankYouModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    // Close modal on overlay click
+    document.addEventListener('click', function(e) {
+      const modal = document.getElementById('emailModal');
+      if (modal && e.target === modal) closeEmailModal();
+    });
+  </script>
+</body>
+</html> 
